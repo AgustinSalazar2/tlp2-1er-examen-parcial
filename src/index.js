@@ -7,8 +7,12 @@ const cors = require('cors');
 const morgan = require('morgan');
 require('dotenv').config();
 
+//Funcion de conexion a la Base de Datos:
+ const dbConnect = require('./db/dbConnection');
+
 //Inicializaciones:
 const app = express(); //Inicializacion de la libreria express
+dbConnect(); //Se inicializa la conexion a la Base de Datos
 
 //Configuracion del puerto:
 const port = process.env.PORT || 4000;
