@@ -12,13 +12,13 @@ ctrlAuth.login = async (req, res) => {
 
         if (!user) {
             return res.json({
-                msg: 'Error de autenticación' - 'Usuario no encontrado'
+                msg: 'Error de autenticación - Usuario no encontrado'
             });
         }
 
         if (!user.active) {
             return res.json({
-                msg: 'Error de autenticación' - 'Usuario inactivo'
+                msg: 'Error de autenticación - Usuario inactivo'
             });
         }
 
@@ -26,11 +26,11 @@ ctrlAuth.login = async (req, res) => {
 
         if (!validarPass) {
             return res.json({
-                msg: 'Error de autenticación' - 'Contraseña incorrecta'
+                msg: 'Error de autenticación - Contraseña incorrecta'
             });
         }
 
-        const token = await generarJWT({ uid: user._id});
+        const token = await generarJWT({ uid: user._id });   //Se genera el token
 
         return res.json({token});
 

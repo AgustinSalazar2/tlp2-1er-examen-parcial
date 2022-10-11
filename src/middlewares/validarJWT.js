@@ -3,11 +3,13 @@ const User = require('../models/User');
 
 //Middleware para validar token
 const validarJWT = async (req, res, next) => {
-    const token = req.headers.authorization;
+
+    let token = req.headers.authorization;
+
     if (!token) {   //Se verifica si existe el token
         return res.json({
-            msg: 'Error de autenticacion  -  Token no valido'
-        });
+            msg: 'Error de autenticacion  -  Token no valido, no hay token'
+        })
     }
 
     try {
@@ -27,7 +29,7 @@ const validarJWT = async (req, res, next) => {
         }
 
         // Se añade la información del usuario al request para que pueda ser utilizada en el resto de middlwares
-        req.user = usuario;
+        req.user = user;
 
         next();      // Se continúa con la ejecución del resto de la petición
     } catch (error) {

@@ -25,7 +25,7 @@ app.use(express.json()); // Para que el servidor comprenda archivos con formato 
 //Importacion de rutas:
 app.use(require('./routes/home.routes'));
 app.use(require('./routes/user.routes'));
-app.use(require('./routes/login.routes'));
+app.use(require('./routes/auth.routes'));
 
 //Configuracion de puerto de escucha del servidor:
 app.listen(port, ()=> console.log(`Servidor corriendo en http://localhost:${port}`));
