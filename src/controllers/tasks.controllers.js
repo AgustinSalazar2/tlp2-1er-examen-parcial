@@ -24,7 +24,7 @@ ctrlTask.postTasks = async (req, res) => {
 }
 
 ctrlTask.getTasks = async (req, res) => {
-    const tasks = await Tasks.find({userId: req.user._id});
+    const tasks = await Tasks.find({$and: [{userId: req.user._id}, {active: true}]});
     return res.json(tasks);
 }
 
@@ -49,6 +49,30 @@ ctrlTask.putTasks = async (req, res) => {
 
     return res.json({
         msg: 'Tarea modificada correctamente'
+    })
+}
+
+ctrlTask.deleteTask = async (req, res) => {
+    const idTask = req.params.id;
+    const idUser = req.user._id;
+    if (!idTask) {
+        return res.json({
+            msg: 'no viene id en el parametro'
+        })
+    }
+
+    const task = await Tasks.findById(idTask);
+    
+    if (idUser.toString() != task.userId.toString()) {
+        return res.json({
+            msg: 'Error de usuario'
+        })
+    }
+
+    await Tasks.findByIdAndUpdate(idTask, { active: false });
+
+    return res.json({
+        msg: 'Tarea eliminada correctamente'
     })
 }
 
