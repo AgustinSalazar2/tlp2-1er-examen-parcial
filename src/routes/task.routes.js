@@ -3,11 +3,14 @@ const validarJWT = require('../middlewares/validarJWT');
 
 const {
     getTasks,
-    postTasks
+    postTasks,
+    putTasks
 } = require('../controllers/tasks.controllers');
 
 router.get('/task', [validarJWT], getTasks);
 
 router.post('/task', [validarJWT], postTasks);
+
+router.put('/task/:id', [validarJWT], putTasks);
 
 module.exports = router;

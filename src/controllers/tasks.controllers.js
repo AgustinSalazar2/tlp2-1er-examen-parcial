@@ -28,4 +28,29 @@ ctrlTask.getTasks = async (req, res) => {
     return res.json(tasks);
 }
 
+ctrlTask.putTasks = async (req, res) => {
+    const idTask = req.params.id;
+    const idUser = req.user._id;
+    if (!idTask) {
+        return res.json({
+            msg: 'no viene id en el parametro'
+        })
+    }
+    const { title, description } = req.body;
+    const task = await Tasks.findById(idTask);
+    
+    if (idUser.toString() != task.userId.toString()) {
+        return res.json({
+            msg: 'Error de usuario'
+        })
+    }
+
+    await Tasks.findByIdAndUpdate(idTask, { title, description });
+
+    return res.json({
+        msg: 'Tarea modificada correctamente'
+    })
+}
+
+
 module.exports = ctrlTask;
