@@ -9,7 +9,7 @@ ctrlUser.getUsers = async (req, res) => {
 };
 
 ctrlUser.postUsers = async (req, res) => {
-    const { username, password:pass, email } = req.body; //Se obtienen los datos enviados por POST
+    const { username, password:pass, email, rol } = req.body; //Se obtienen los datos enviados por POST
 
     //Encriptar la contraseña
     const newPassword = bcrypt.hashSync(pass, 10);
@@ -17,7 +17,8 @@ ctrlUser.postUsers = async (req, res) => {
     const newUser = new User({   //Se instancia un nuevo documento de mongodb
         username,
         password: newPassword,
-        email
+        email,
+        rol
     });
 
     const user = await newUser.save(); //Se almacena en la base de datos con el metodo save()

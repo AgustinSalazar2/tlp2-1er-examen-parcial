@@ -1,5 +1,6 @@
 const router = require('express').Router(); //El metodo Router() permite crear rutas
 const validarJWT = require('../middlewares/validarJWT');
+const isAdmin = require('../middlewares/isAdmin');
 
 const {
     postUsers,
@@ -10,9 +11,9 @@ const {
 
 
 //Definiendo rutas:
-router.post('/user',[validarJWT], postUsers);
+router.post('/user',[validarJWT, isAdmin], postUsers);
 
-router.get('/user',[validarJWT], getUsers);
+router.get('/user',[validarJWT, isAdmin], getUsers);
 
 router.put('/user/:id',[validarJWT], putUsers);
 
