@@ -20,7 +20,8 @@ const UserSchema = new Schema({
         default: true
     },
     rol: {
-        type: Array
+        type: Array,
+        default: "external_user"
     }
 },{
     versionKey: false,
