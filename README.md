@@ -13,6 +13,12 @@ ejecute el comando: git clone https://github.com/AgustinSalazar2/tlp2-1er-examen
 npm install
 ```
 
+### Cear un nuevo archivo .env y configurar las variables de entorno necesarias para las pruebas:
+```bash
+MONGO_DB_URI=  < 'URI de mongodb' >
+
+SECRET =  < 'Palabra secreta para generar el token' >
+```
 ### Para ejecutar el proyecto, ejecutar el siguiente comando:
 
 ```bash
