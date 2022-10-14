@@ -19,6 +19,10 @@ MONGO_DB_URI=  < 'URI de mongodb' >
 
 SECRET =  < 'Palabra secreta para generar el token' >
 ```
+
+### Para poder crear usuarios primero se debe crear un usuario con el rol de "admin", ya que es el unico que tiene permisos para crear nuevos usuarios.
+
+
 ### Para ejecutar el proyecto, ejecutar el siguiente comando:
 
 ```bash
